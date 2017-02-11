@@ -21,7 +21,13 @@ fn on_connection(mut stream: TcpStream, sock_addr: SocketAddr) {
     println!("Read {} bytes from socket", n);
     buffer.truncate(n);
     let buf_str = String::from_utf8(buffer).unwrap();
-    println!("{}", buf_str);
+    let v: Vec<&str> = buf_str.split("\r\n").collect();
+    let get_line = &v[0];
+    let tmp: Vec<&str> = get_line.split(" ").collect();
+    let method_name: &str = tmp[0];
+    let path: &str = tmp[1];
+
+    println!("method = {}, path = {}", method_name, path);
 
     let n = stream.write(out.as_bytes()).unwrap();
     println!("wrote {} bytes", n);
