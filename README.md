@@ -1,5 +1,5 @@
 
-## http Server written in rust.
+## http server written in rust.
 
 * An HTTP 1.0 like server
 * Accepts GET requests
